@@ -179,8 +179,8 @@
     \begin{frame}{pair}
         \begin{itemize}
             \item<1-> pair<T1, T2> p：宣告一個 pair 其第一個位置的型態為 T1，第二個位置的型態為 T2
-            \item<2-> pair<T1, T2> p(a, b) / pair<T1, T2> p = make\_pair(a, b) / pair<T1, T2> p = {a, b} (C++11)：宣告一個 p 並設為 (a, b)
-            \item<3-> p = make\_pair(T1 a, T2 b) / p = {T1 a, T2 b} (C++11)：將 p 設為 (a, b)
+            \item<2-> pair<T1, T2> p(a, b) / pair<T1, T2> p = make\_pair(a, b) / pair<T1, T2> p = \{a, b\} (C++11)：宣告一個 p 並設為 (a, b)
+            \item<3-> p = make\_pair(T1 a, T2 b) / p = \{T1 a, T2 b\} (C++11)：將 p 設為 (a, b)
             \item<4-> p.first：取得第一個值，p.second：取得第二個值
             \item<5-> pair 是可以比大小的，其規則為：優先比第一項，第一項相同時比第二項，所以可以直接排序
         \end{itemize}
@@ -243,7 +243,7 @@
             \item<1-> vector<T> vec：宣告一個型別為 T，長度為 0 的 vector
             \item<1-> vector<T> vec(n)：宣告一個型別為 T，長度為 n 的 vector，$\mathcal{O}(n)$
             \item<1-> vector<T> vec(n, T val)：宣告一個型別為 T，長度為 n 的 vector，且初始化為 val
-            \item<2-> vector 的初始化不需要加 $=$：vector<int> v{1, 2, 3, 4, 5}
+            \item<2-> vector 的初始化不需要加 $=$：vector<int> v\{1, 2, 3, 4, 5\}
             \item<3-> 取值就跟一般的陣列一樣，使用 vec[i] 就可以取得第 $i$ 位的值
             \item<3-> 若是存取第一位、最後一位，可以使用 vec.front()、vec.back()
         \end{itemize}
@@ -469,7 +469,7 @@
             \item<3-> priority\_queue 的宣告方法為：priority\_queue<T, Con, Cmp>，其中 Con 代表的是使用的容器，主要可以用 vector 跟 deque，而 Cmp 是排序的規則，以下舉兩種最常見的例子：
             \begin{itemize}
                 \item<4-> priority\_queue<int, vector<int>, less<int>> pq / priority\_queue<int> pq：將最大值優先取出
-                \item<4-> priority\_queue<int, vector<int>, greater<int>> pq：將最大值優先取出
+                \item<4-> priority\_queue<int, vector<int>, greater<int>> pq：將最小值優先取出
             \end{itemize}
             \item<5-> C++ 內建的 less 是指前一個小於後一個，而 pq 的 top 可以視為是最後一個元素，所以當你的 Cmp 是 less 時，就代表是取出最大值
             \item<6-> 需要注意的是，在宣告一個 pq 時，若在後面加上 iterator 的 first, last (priority\_queue<int> pq(first, last))，則 pq 會將 $[first, last)$ 的元素都放入 pq 內
@@ -522,7 +522,7 @@
         \begin{itemize}
             \item<1-> set (集合) 是一個自平衡二元查找樹，簡單來說就是一個樹狀的資料結構
             \item<1-> 跟數學中的集合很像，不會有重複的元素
-            \item<2-> 支援 $\mathcal{O}(n\log n)$ 的插入、刪除、搜尋
+            \item<2-> 支援 $\mathcal{O}(\log n)$ 的插入、刪除、搜尋
             \item<2-> 需要 include <set>
             \item<3-> set<T> st：宣告一個型別為 T 的 set
         \end{itemize}
@@ -531,13 +531,13 @@
     \begin{frame}{set}
         \begin{itemize}
             \item<1-> st.size(), st.empty() 同其他容器
-            \item<2-> st.insert(T val)：將 val 加入 st 中，$\mathcal{O}(size \log size)$
-            \item<3-> st.find(T val)：找到 val 所在位置的 iterator，若找不到則回傳 st.end()，$\mathcal{O}(size \log size)$
-            \item<3-> st.erase(T val)：在 st 中刪除 val，$\mathcal{O}(size \log size)$
+            \item<2-> st.insert(T val)：將 val 加入 st 中，$\mathcal{O}(\log size)$
+            \item<3-> st.find(T val)：找到 val 所在位置的 iterator，若找不到則回傳 st.end()，$\mathcal{O}(\log size)$
+            \item<3-> st.erase(T val)：在 st 中刪除 val，$\mathcal{O}(\log size)$
             \item<4-> st.erase(iterator first, iterator last)：刪除 $[first, last)$ 之間的元素，$\mathcal{O}(count)$
             \item<5-> st.count(T val)：取得 val 在 st 中的數量，$\mathcal{O}(\log size + count)$
-            \item<6-> st.lower\_bound(T val)：在 st 中找到第一個指向元素 $\ge val$ 的迭代器，$\mathcal{O}(size \log size)$
-            \item<6-> st.upper\_bound(T val)：在 st 中找到第一個指向元素 $> val$ 的迭代器，$\mathcal{O}(size \log size)$
+            \item<6-> st.lower\_bound(T val)：在 st 中找到第一個指向元素 $\ge val$ 的迭代器，$\mathcal{O}(\log size)$
+            \item<6-> st.upper\_bound(T val)：在 st 中找到第一個指向元素 $> val$ 的迭代器，$\mathcal{O}(\log size)$
             \item<7-> set::iterator 是雙向迭代器，且會由小到大排序，將迭代器往前或往後移動時的複雜度為 $\mathcal{O}(1)$
         \end{itemize}
     \end{frame}
@@ -616,7 +616,7 @@
     \begin{frame}{map}
         \begin{itemize}
             \item<1-> map (映射) 由 key 以及 value 組成，每個 key 都會對應到一個 value
-            \item<1-> 跟 set 一樣是樹狀的結構，支援 $\mathcal{O}(n\log n)$ 的插入、刪除、搜尋
+            \item<1-> 跟 set 一樣是樹狀的結構，支援 $\mathcal{O}(\log n)$ 的插入、刪除、搜尋
             \item<1-> 需 include <map>
             \item<2-> map<T1, T2> mp：宣告一個 key 為 T1 型別，value 為 T2 型別的 map，可以想像成是一個 set<pair<T1, T2>> 
             \item<3-> map 其實是由 pair 組成的結構，所以 iterator 指向的元素為一個 pair，想要取出 key 需要用 .first, 取出 value 需要用 .second
